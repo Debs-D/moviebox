@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body onload="fetchImage()">
     <header>
         <div class="nav-bar">
             <div class="logo"> <img src="./images/tv.svg" alt="images">
@@ -23,31 +23,16 @@
                         <img src="./images/Search.svg" alt="Search Icon">
                     </span>
                 </form>
-                <div class="
-                ResultContainer">
+                <div class="ResultContainer">
                     <div class="search-result"></div>
-                    <div class="movieContainer"></div>
+                    <!-- <div class="movieContainer"></div> -->
                 </div>
             </div>
-            <div class="movieContainer">
-                <div class="movieCard">
-                    <img src="" alt="" class="moviePoster">
-                    <div class="movieTitle">John Wick</div>
-
-                    <div class="rating">
-                        <span class="rate"></span>
-                        <span class="year"></span>
-                    </div>
-                </div>
-            </div>
-
             <div class="menu">
                 <img src="./images/Menu.png" alt="images">
 
             </div>
-
         </div>
-
         <div class="description-box">
             <div class="rating">
                 <div>
@@ -60,8 +45,11 @@
                         million price tag on his head, he is the <br> target of hit men and women everywhere.
                     </h2>
                     <div class="button-container">
-                        <img src="./images/Button.svg" alt="Button">
+                        <a href="menu.html">
+                            <img src="./images/Button.svg" alt="Button">
+                        </a>
                     </div>
+
                 </div>
                 <div class="Pagination"><img src="./images/Pagination.svg" alt=""></div>
             </div>
@@ -69,57 +57,15 @@
     </header>
 
     <main>
-        <div class="title">
-            <h1>Featured Movie</h1>
-            <div>
-                <h2>See more</h2>
-                <img src="./images/Icon.svg" alt="">
+        <div class="max-width">
+            <div class="title">
+                <h1>Featured Movie</h1>
+                <div>
+                    <h2>See more</h2>
+                    <img src="./images/Icon.svg" alt="">
+                </div>
             </div>
-        </div>
-
-        <div class="movie-list">
-            <a href="menu.html">
-                <img src="./images/Movie Card.png" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card.svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (1).svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (2).svg" alt="images" />
-            </a>
-        </div>
-
-        <div class="movie-list">
-            <a href="menu.html">
-                <img src="./images/Movie Card (3).svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (4).svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (5).svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (6).svg" alt="images" />
-            </a>
-        </div>
-
-        <div class="movie-list">
-            <a href="menu.html">
-                <img src="./images/Movie Card (7).svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (8).svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (9).svg" alt="images" />
-            </a>
-            <a href="menu.html">
-                <img src="./images/Movie Card (10).svg" alt="images" />
-            </a>
+            <div class="movieContainer"></div>
         </div>
     </main>
     <footer>
