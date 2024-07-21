@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="./syle.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./menu.html">
+</head>
+
+<body>
+
+    <body onload="fetchImage()">
+        <header class="seeMore-header">
+            </div>
+        </header>
+
+        <div class="nav-bar">
+            <div class="logo"> <img src="./images/tv.svg" alt="images">
+                <h1>MovieBox</h1>
+            </div>
+            <div class="seeMore-search-container">
+                <form class="search-btn">
+                    <input type="text" placeholder="What do you want to watch?" />
+                    <span class="search-icon">
+                        <img src="./images/Search.svg" alt="Search Icon">
+                    </span>
+                </form>
+                <div class="ResultContainer">
+                    <div class="search-result"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <img src="./images/Menu.png" alt="images">
+
+            </div>
+        </div>
+
+        <main>
+            <div class="max-width">
+
+                <div class="movieContainer"></div>
+
+            </div>
+
+        </main>
+        <footer>
+            <div class="social">
+                <img src="./images/Vector.svg" alt="images">
+                <img src="./images/fa-brands_instagram.svg" alt="images">
+                <img src="./images/fa-brands_twitter.svg" alt="images">
+                <img src="./images/fa-brands_youtube.svg" alt="images">
+            </div>
+            <div class="links">
+                <li>Conditions of Use</li>
+                <li>Privacy & Policy</li>
+                <li>Press Room</li>
+            </div>
+            <p>© 2021 MovieBox by Adriana Eka Prayudha </p>
+        </footer>
+
+        <div class="pagination_section">
+            <a href="#" class="pagination-link" data-page="prev">
+                << Previous</a>
+                    <a href="#" class="pagination-link" data-page="1">1</a>
+                    <a href="#" class="pagination-link" data-page="2">2</a>
+                    <a href="#" class="pagination-link" data-page="3">3</a>
+                    <a href="#" class="pagination-link" data-page="next">Next >></a>
+        </div>
+
+        <script src="./script.js"></script>
+    </body>
+
+</html>

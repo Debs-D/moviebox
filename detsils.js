@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           movie.poster_path
         })"
         >
+        
     <div class="play-button"> <img src='./images/Play.svg'></div>
     </div class ='page-wrapper'>
         <div>   <div class="page">
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }</p>
                 </div>
 
+            <div class = 'button-container'>
                 <button class="showtimes-button">
                     <div class="icon-container">
                         <img src="./images/Two Tickets.svg" alt="images">
@@ -63,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <img class="best-image" src="https://image.tmdb.org/t/p/original${
                   movie.backdrop_path
                 }" alt="Backdrop Image">
-
+</div>
             </div></div>
         </div>`;
 
