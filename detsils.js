@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const newMovie = document.querySelector(".movieDetails");
   newMovie.innerHTML = ` 
         <div class="img"
-        style="background-image:url(https://image.tmdb.org/t/p/original${
-          movie.poster_path
-        })"
+            style="background-image:url(https://image.tmdb.org/t/p/original${
+              movie.poster_path
+            })"
         >
         
     <div class="play-button"> <img src='./images/Play.svg'></div>

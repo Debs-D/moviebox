@@ -1,6 +1,6 @@
 "use strict";
 
-// Initialize variables
+// Initialize variables and declare all variable that will be used throughout the code
 const initializeVariables = () => {
   const form = document.querySelector(".search-btn");
   const movie = document.querySelector(".movieContainer");
@@ -12,13 +12,15 @@ const initializeVariables = () => {
   return { form, movie, input, searchResults, ResultContainer, pagination };
 };
 
-// Fetch image function
+// Fetch image function fetches the movie data from the API and takes in 2 parameters(url and query)
 const fetchImage = async (url = "movie/popular", query) => {
   const apiKey = "053d4f0cd76274aec5e9d4e1b3d83c37";
 
   const { movie, ResultContainer, pagination } = initializeVariables();
   movie.innerHTML = "";
   pagination.innerHTML = ""; // Clear previous pagination
+
+  // Fetch data from the API
 
   try {
     const response = await fetch(
@@ -27,9 +29,9 @@ const fetchImage = async (url = "movie/popular", query) => {
     const data = await response.json();
     const movies = data.results;
 
-    // Ensure we only work with 36 movies
     const limitedMovies = movies.slice(0, 36);
 
+    // this line creates the movie cards for each movie
     const movieCards = limitedMovies.map((movie) => {
       const posterUrl = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
@@ -38,6 +40,7 @@ const fetchImage = async (url = "movie/popular", query) => {
       const movieCard = document.createElement("div");
       movieCard.classList.add("movieCard");
 
+      // the inner HTML of the movie card
       movieCard.innerHTML = `
         <img class="moviePoster" src="${posterUrl}" alt="${movie.title}">
         <span class="year">${movie.release_date.split("-")[0]}</span>
@@ -49,16 +52,16 @@ const fetchImage = async (url = "movie/popular", query) => {
           <img class="movie-rate" src="./images/Rotten Tomatoes.svg" alt="Rating">
         </div>
       `;
+      // this direct us to the movie details page and return the movie
       movieCard.onclick = function () {
         window.location.href = `movie-details.html?id=${movie.id}`;
       };
 
       return movieCard;
     });
-
-    // Pagination logic
-    const pageSize = 12; // Set the number of cards per page
-    const totalPages = Math.ceil(movieCards.length / pageSize);
+    // Set the number of cards per page
+    const pageSize = 12;
+    const totalPages = 3;
 
     const displayCards = (cards) => {
       movie.innerHTML = "";
@@ -153,9 +156,6 @@ form.addEventListener("submit", (event) => {
   const query = input.value;
   fetchImage("search/movie", query);
 });
-
-// Initial call to fetch popular movies
-fetchImage();
 
 document.getElementById("menu-icon").addEventListener("click", function () {
   var menuList = document.getElementById("menu-list");

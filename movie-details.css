@@ -438,4 +438,11 @@ button:hover {
     top: 0;
     left: 0;
   }
+
+  .play-button {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+  }
 }
