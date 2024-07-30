@@ -1,6 +1,6 @@
 "use strict";
 
-// Initialize variables and declare all variable that will be used throughout the code
+// Initialize variables
 const initializeVariables = () => {
   const form = document.querySelector(".search-btn");
   const movie = document.querySelector(".movieContainer");
@@ -12,27 +12,34 @@ const initializeVariables = () => {
   return { form, movie, input, searchResults, ResultContainer, pagination };
 };
 
-// Fetch image function fetches the movie data from the API and takes in 2 parameters(url and query)
-const fetchImage = async (url = "movie/popular", query) => {
+// Fetch image function
+const fetchImage = async (
+  url = "movie/popular",
+  query,
+  numPages = 3,
+  append = false
+) => {
   const apiKey = "053d4f0cd76274aec5e9d4e1b3d83c37";
-
   const { movie, ResultContainer, pagination } = initializeVariables();
-  movie.innerHTML = "";
-  pagination.innerHTML = ""; // Clear previous pagination
-
-  // Fetch data from the API
+  if (!append) {
+    movie.innerHTML = "";
+    // Clear previous pagination
+    while (pagination.firstChild) {
+      pagination.removeChild(pagination.firstChild);
+    }
+  }
 
   try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/${url}?api_key=${apiKey}&query=${query}`
-    );
-    const data = await response.json();
-    const movies = data.results;
+    let allMovies = [];
+    for (let page = 1; page <= numPages; page++) {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${url}?api_key=${apiKey}&query=${query}&page=${page}`
+      );
+      const data = await response.json();
+      allMovies = allMovies.concat(data.results);
+    }
 
-    const limitedMovies = movies.slice(0, 36);
-
-    // this line creates the movie cards for each movie
-    const movieCards = limitedMovies.map((movie) => {
+    const movieCards = allMovies.map((movie) => {
       const posterUrl = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+poster";
@@ -40,7 +47,6 @@ const fetchImage = async (url = "movie/popular", query) => {
       const movieCard = document.createElement("div");
       movieCard.classList.add("movieCard");
 
-      // the inner HTML of the movie card
       movieCard.innerHTML = `
         <img class="moviePoster" src="${posterUrl}" alt="${movie.title}">
         <span class="year">${movie.release_date.split("-")[0]}</span>
@@ -52,13 +58,13 @@ const fetchImage = async (url = "movie/popular", query) => {
           <img class="movie-rate" src="./images/Rotten Tomatoes.svg" alt="Rating">
         </div>
       `;
-      // this direct us to the movie details page and return the movie
       movieCard.onclick = function () {
         window.location.href = `movie-details.html?id=${movie.id}`;
       };
 
       return movieCard;
     });
+
     // Set the number of cards per page
     const pageSize = 12;
     const totalPages = 3;
@@ -109,7 +115,9 @@ const fetchImage = async (url = "movie/popular", query) => {
       pagination.appendChild(nextLink);
     };
 
-    createPaginationLinks();
+    if (!append && pagination.children.length === 0) {
+      createPaginationLinks();
+    }
 
     // Display the first page initially
     let currentPage = 0;
@@ -118,7 +126,7 @@ const fetchImage = async (url = "movie/popular", query) => {
     // Pagination event listeners
     const paginationLinks = pagination.querySelectorAll(".pagination-link");
     paginationLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
+      link.addEventListener("click", async (event) => {
         event.preventDefault();
         const page = link.getAttribute("data-page");
         if (page === "prev") {
@@ -130,6 +138,11 @@ const fetchImage = async (url = "movie/popular", query) => {
           if (currentPage < totalPages - 1) {
             currentPage++;
             showPage(currentPage);
+
+            // Fetch additional pages if on the last page of current data
+            if (currentPage >= totalPages - 1) {
+              await fetchImage(url, query, numPages + 12, true);
+            }
           }
         } else {
           const pageIndex = parseInt(page) - 1;
@@ -156,6 +169,9 @@ form.addEventListener("submit", (event) => {
   const query = input.value;
   fetchImage("search/movie", query);
 });
+
+// Initial call to fetch popular movies
+fetchImage();
 
 document.getElementById("menu-icon").addEventListener("click", function () {
   var menuList = document.getElementById("menu-list");

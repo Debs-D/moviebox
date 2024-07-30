@@ -56,7 +56,7 @@ header h1 {
   background-color: rgba(255, 255, 255, 0);
 }
 .search-container input[type="text"]::placeholder {
-  color: #ffff;
+  color: white;
   font-size: 16px;
 }
 
@@ -64,15 +64,14 @@ header h1 {
   width: 100%;
   padding: 10px 40px 10px 10px;
   box-sizing: border-box;
-  border: 2px solid white;
+  border: 2px solid #000;
   border-radius: 6px;
   color: black;
   font-size: 16px;
-  background-color: rgba(255, 255, 255, 0);
 }
 
 .seeMore-search-container input[type="text"]::placeholder {
-  color: #ffff;
+  color: #000;
   font-size: 16px;
 }
 
@@ -326,6 +325,7 @@ footer p {
   .nav-bar {
     flex-direction: column;
     align-items: center;
+    gap: 25px;
   }
 
   .logo h1 {
