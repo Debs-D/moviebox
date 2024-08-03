@@ -17,7 +17,10 @@ const fetchImage = async (
   url = "movie/popular",
   query,
   numPages = 3,
-  append = false
+  append = false,
+  startPage = 1,
+  currentPage = 1,
+  totalPages = 3
 ) => {
   const apiKey = "053d4f0cd76274aec5e9d4e1b3d83c37";
   const { movie, ResultContainer, pagination } = initializeVariables();
@@ -31,7 +34,7 @@ const fetchImage = async (
 
   try {
     let allMovies = [];
-    for (let page = 1; page <= numPages; page++) {
+    for (let page = startPage; page < startPage + numPages; page++) {
       const response = await fetch(
         `https://api.themoviedb.org/3/${url}?api_key=${apiKey}&query=${query}&page=${page}`
       );
@@ -67,7 +70,6 @@ const fetchImage = async (
 
     // Set the number of cards per page
     const pageSize = 12;
-    const totalPages = 3;
 
     const displayCards = (cards) => {
       movie.innerHTML = "";
@@ -75,7 +77,6 @@ const fetchImage = async (
     };
 
     const showPage = (pageIndex) => {
-      if (pageIndex < 0 || pageIndex >= totalPages) return;
       const startIndex = pageIndex * pageSize;
       const endIndex = startIndex + pageSize;
       const currentCards = movieCards.slice(startIndex, endIndex);
@@ -120,8 +121,7 @@ const fetchImage = async (
     }
 
     // Display the first page initially
-    let currentPage = 0;
-    showPage(currentPage);
+    showPage(currentPage - 1);
 
     // Pagination event listeners
     const paginationLinks = pagination.querySelectorAll(".pagination-link");
@@ -130,24 +130,32 @@ const fetchImage = async (
         event.preventDefault();
         const page = link.getAttribute("data-page");
         if (page === "prev") {
-          if (currentPage > 0) {
+          if (currentPage > 1) {
             currentPage--;
-            showPage(currentPage);
+            showPage(currentPage - 1);
           }
         } else if (page === "next") {
-          if (currentPage < totalPages - 1) {
+          if (currentPage < totalPages) {
             currentPage++;
-            showPage(currentPage);
+            showPage(currentPage - 1);
 
             // Fetch additional pages if on the last page of current data
-            if (currentPage >= totalPages - 1) {
-              await fetchImage(url, query, numPages + 12, true);
+            if (currentPage === totalPages) {
+              await fetchImage(
+                url,
+                query,
+                numPages,
+                true,
+                startPage + numPages,
+                currentPage,
+                totalPages + numPages
+              );
             }
           }
         } else {
-          const pageIndex = parseInt(page) - 1;
+          const pageIndex = parseInt(page);
           currentPage = pageIndex;
-          showPage(currentPage);
+          showPage(currentPage - 1);
         }
       });
     });
@@ -159,6 +167,12 @@ const fetchImage = async (
   } catch (error) {
     console.error(error);
   }
+
+  const press = document.querySelector(".press-button");
+  const trailerKey = movie?.videos?.results?.[0]?.key;
+  press.addEventListener("click", () => {
+    window.open(`https://www.youtube.com/watch?v=${trailerKey}`, "_blank");
+  });
 };
 
 // Initialize variables and add event listener for the form

@@ -155,6 +155,12 @@ main {
   color: #be123c;
 }
 
+.title h2 a:hover {
+  color: none;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
 .title div {
   display: flex;
   align-items: center;
@@ -388,26 +394,7 @@ footer p {
   }
 }
 
-@media (max-width: 425px) {
-  .movieContainer {
-    grid-template-columns: repeat(2, 2fr);
-    gap: 15px;
-    justify-items: center;
-    align-items: center;
-  }
-
-  .moviePoster {
-    width: 90%;
-    height: 340px;
-    overflow-x: hidden;
-  }
-  .movie-list img:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
-}
-
-@media (max-width: 376px) {
+@media (max-width: 423px) {
   .movieContainer {
     grid-template-columns: repeat(1, 1fr);
     gap: 15px;
