@@ -273,6 +273,7 @@ footer p {
   height: 100%;
   flex: auto;
   padding: 20px;
+  margin-bottom: 20%;
 }
 
 .movieCard:hover {
@@ -315,10 +316,20 @@ footer p {
 @media (max-width: 1200px) {
   .movieContainer {
     grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
   }
   .search-btn input {
     padding: 0.4rem 0.3rem;
     font-size: 1rem;
+  }
+
+  .moviePoster {
+    width: 90%;
+    height: 320px;
+  }
+
+  .movieCard {
+    max-width: 210px;
   }
 }
 
@@ -344,7 +355,7 @@ footer p {
   }
   .moviePoster {
     width: 90%;
-    height: 340px;
+    height: 320px;
     overflow-x: hidden;
   }
   .menu {
@@ -394,7 +405,33 @@ footer p {
   }
 }
 
-@media (max-width: 423px) {
+@media (max-width: 427px) {
+  .movieContainer {
+    grid-template-columns: repeat(2, 2fr);
+    gap: 15px;
+    justify-items: center;
+    align-items: center;
+  }
+  .moviePoster {
+    width: 90%;
+    height: 300px;
+    overflow-x: hidden;
+  }
+
+  .search-btn input[type="text"]::placeholder {
+    font-size: 12px;
+  }
+
+  .title h1 {
+    font-size: 18px;
+  }
+  .movie-list img:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 376px) {
   .movieContainer {
     grid-template-columns: repeat(1, 1fr);
     gap: 15px;
@@ -402,7 +439,7 @@ footer p {
     align-items: center;
   }
   .moviePoster {
-    width: 100%;
+    width: 120%;
     height: 370px;
     overflow-x: hidden;
   }
