@@ -1,21 +1,40 @@
-Movie Box
 
-Welcome to Movie Box! 
+![Logo](https://res.cloudinary.com/jerrick/image/upload/c_scale,f_jpg,q_auto/66d3e11373a38b001ddc7175.png)
 
-This project displays movie information including posters, titles, ratings, and release years.
 
-Features
+# 🎬 Movie Box
 
-Responsive Design: The layout adjusts to different screen sizes for a better user experience.
 
-Movie Posters: Displays movie posters with a set height and width to maintain consistency.
+Welcome to Movie Box!
+Movie Box is a simple and responsive web application that showcases a collection of movies with essential details like posters, titles, ratings, and release years.
 
-Movie Details: Shows the movie title and ratings.
+🔧 Features
+Responsive Design: Fully adaptable layout for all screen sizes, ensuring a smooth user experience across devices.
 
-Technologies Used
+Movie Posters: Consistently sized posters to maintain a clean and organized layout.
 
-HTML: For structuring the Movie Posters.
+Movie Details: Displays movie titles, ratings, and release years dynamically.
 
-CSS: For styling the Movie Posteres.
+💡 Technologies Used
+HTML – Structured the page content and layout.
 
-JAVASCRIPT: For Functionality and interactivity of the Movie content.
+CSS – Styled the components for visual consistency and responsiveness.
+
+JavaScript – Added interactivity and handled the display of movie content dynamically.
+
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  Yarn dev 
+```
+
+
+## Demo
+
+ link to demo
+
+https://moviebox-blue.vercel.app/
